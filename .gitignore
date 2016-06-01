@@ -63,3 +63,6 @@ target/
 
 # venv
 venv
+
+# output
+output.csv

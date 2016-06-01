@@ -3,11 +3,14 @@ import itertools
 
 NRDB = 'http://netrunnerdb.com/'
 
-def get_cards():
+def get_ice_list():
     '''
     Pull a list of all cards from nrdb.
     '''
-    return requests.get("{}/api/cards/".format(NRDB)).json()
+    return [
+        card for card in requests.get("{}/api/cards/".format(NRDB)).json()
+        if card["type"] == "ICE"
+        ]
 
 def get_attribute_list(cards):
     '''

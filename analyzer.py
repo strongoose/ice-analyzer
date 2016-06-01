@@ -8,14 +8,13 @@ import csv
 
 NRDB = 'http://netrunnerdb.com/'
 
-def get_ice_list():
+
+def get_cards_list():
     '''
     Pull a list of all cards from nrdb.
     '''
-    return [
-        card for card in requests.get("{}/api/cards/".format(NRDB)).json()
-        if card["type"] == "ICE"
-        ]
+    return [card for card in
+            requests.get("{}/api/cards/".format(NRDB)).json()]
 
 def get_attribute_list(cards):
     '''
@@ -92,10 +91,10 @@ def write_to_csv(ice_list, output):
 
 if __name__ == '__main__':
 
-    ices = get_ice_list()
+    cards = get_cards_list()
 
-    explode_subs(ices)
+    explode_subs(cards)
 
-    explode_on_encounter(ices)
+    explode_on_encounter(cards)
 
-    write_to_csv(ices, "out.csv")
+    write_to_csv(cards, "output.csv")
